@@ -50,7 +50,7 @@ pub fn build(b: *std.Build) !void {
         //     try res.append("--fsanitize-thread");
         // }
         if (options.simd) {
-            box2d.defineCMacro("BOX2D_ENABLE_SIMD", null);
+            box2d.root_module.addCMacro("BOX2D_ENABLE_SIMD", "");
             try res.append("-DBOX2D_ENABLE_SIMD");
         }
 
@@ -103,8 +103,10 @@ pub fn build(b: *std.Build) !void {
             "src/solver.h",
             "src/solver_set.c",
             "src/solver_set.h",
-            "src/stack_allocator.c",
-            "src/stack_allocator.h",
+            "src/arena_allocator.c",
+            "src/arena_allocator.h",
+            "src/sensor.h",
+            "src/sensor.c",
             "src/table.c",
             "src/table.h",
             "src/timer.c",
